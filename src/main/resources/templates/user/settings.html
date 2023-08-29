@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="/user/base2::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>dashboard</title>
+</head>
+<body>
+  <section>
+  <div class="container contact">
+  	<div class="card">
+  		<div class="card-body">
+  		     <!-- printing error message on client side -->   
+          <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+               <p class="text-center" th:text="${session.message.content}" ></p>
+               <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+          </div>
+  		    <div class="text-center"><img src="/images/settings.png" alt="profile" width="60px"/></div>
+  		    <div class="text-center"><h1>Change Password</h1></div>
+			<form th:action="@{/user/change-password}" method ="POST">
+				<div class="form-group">
+					<label for="oldpass">Old Password</label> <input
+						type="text" class="form-control" id="oldpass" name="old"
+					aria-describedby="emailHelp" placeholder="Enter Old Password">
+					
+				</div>
+				<div class="form-group">
+					<label for="newpass">New Password</label> <input
+						type="text" class="form-control" id="newpass" name="new1"
+						placeholder="Enter New Password">
+				</div>
+				
+				<button type="submit" class="btn btn-success">Submit</button>
+				<button type="reset" class="btn btn-warning text-white">Reset</button>
+			</form>
+            </div>
+		</div>
+  	</div>
+  	<script> $(document).ready(()=>{
+        $(".item").removeClass("active");
+        $("#settings").addClass("active");
+        
+      });</script>
+    
+  </section>
+</body>
+</html>

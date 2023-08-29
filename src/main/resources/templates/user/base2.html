@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(content)">
+<head>
+<!-- Required meta tags -->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Smart Contact Manager </title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<!-- custom css file link -->
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<!-- font awesome link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- w3-sidebar link -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- bootstrap jquery with ajax included instead slim.min use min link -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous">
+</script>
+	
+</head>
+
+<body>
+
+	<!--Begginning Of Navbar -->
+
+	<nav class="navbar navbar-expand-lg navbar-dark  bg-primary fixed-top">
+
+        <!-- sidebar icon -->
+		<span class="w3-large bar mr-3" onclick="toggleSidebar()">
+			<i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+		</span>
+
+		<!-- title field -->
+		<a class="navbar-brand " href="#">Smart Contact Manager</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto  text-uppercase">
+
+				<!-- home page field -->
+				<li class="nav-item active"><a class="nav-link" th:href="@{/user/dashboard}"
+					href="#">Home <span class="sr-only">(current)</span></a></li>
+
+				<!-- user name dynamically shows here-->
+				<li class="nav-item"><a class="nav-link " th:href="@{/signin}"
+					tabindex="-1" aria-disabled="true"><img
+						th:src="@{/images/verified-user.png}" alt="icon" width="27px" /><span
+						th:text="${person.name}"></span></a></li>
+
+				<!-- login field -->
+				<li class="nav-item"><a class="nav-link " th:href="@{/logout}"
+					href="#" tabindex="-1" aria-disabled="true">Logout</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<!-- End Of Navbar -->
+
+	<!-- side bar -->
+
+	<div class="w3-sidebar w3-bar-block sidebar " style="display: none" id="mySidebar">
+
+	    <p class="text-lg-center mb-5 font-weight-bold  title">Content</p>
+	    
+	    <div class="divider mt-0.2"></div>
+	   
+		<button class="w3-bar-item w3-button w3-large closes"  onclick="w3_close()">Close<span class="close">&times;</span></button>
+		
+		<div class="divider mt-0" ></div>
+		 
+		 <!-- we are giving url path here in th:href (@RequestMapping path) -->
+        <a id="home" th:href="@{/user/dashboard}" class="item active"> <i class="fa-solid fa-house-chimney"> </i>Home</a>
+		
+		<a id="show" th:href="@{/user/show-contacts/0}" class="item"> <i class="fa-solid fa-address-book"></i> View Contacts</a> 
+			
+		<a id="add" th:href="@{/user/add-contact}" class="item"> <i class="fa-solid fa-pencil"></i> Add Contact </a>
+			
+		<a id="profile" th:href="@{/user/profile}" class="item"> <i class="fa-solid fa-user"></i> Your Profile </a>
+			
+		<a id="settings" href="#" th:href="@{/user/settings}" class="item"> <i class="fa-sharp fa-solid fa-gear"></i> Settings </a>
+			
+		<a th:href="@{/logout}" class="item"> <i class="fa-solid fa-right-from-bracket"></i> Logout </a>
+					
+	</div>
+	<!-- end of side area -->
+
+	<!-- dynamically another html page is added  , content area-->
+	<div class="content1">
+		<div th:replace="${content}"></div>
+	</div>
+	<!-- end of content area -->
+	
+	 <!-- FOOTER -->
+ <footer class="footer content2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p>If you have any questions or feedback, feel free to reach out to us at <a href="mailto:contact@smartcontactmanager.com">contact@smartcontactmanager.com</a>.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Follow Us</h4>            
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+               
+            </div>
+             <div class="col-md-4 text-white">
+                <p>&copy; 2023 Smart Contact Manager. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+	
+
+	<!-- Optional JavaScript -->
+	
+	<script	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+		
+	
+	
+	<!-- open payment form js  -->	
+	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	
+	<!-- sweet alert for payment -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+	<script th:src="@{/js/script.js}"></script>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+	   function deleteContact(cid){
+	      swal({
+  title: "Are you sure?",
+  text: "You want to delete this contact !",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    window.location="/user/delete/"+cid;
+   
+  } else {
+    swal("Your contact is safe !");
+  }
+});
+	   
+	   }
+
+	</script>
+</body>
+</html>

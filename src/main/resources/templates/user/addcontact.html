@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="/user/base2::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>contact</title>
+</head>
+<body>
+  <section>
+     <div class="card ml-3 mr-5 contact ">
+     <div class="card-body">
+       <!-- printing error message on client side -->   
+          <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+               <p class="text-center" th:text="${session.message.content}" ></p>
+               <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+          </div>
+        <!-- add contact icon -->
+       <div class="text-center addicon mt-2"><img src="/images/add-user.png" alt="" width="30px"></div>
+        <h1 class="text-center">Add Contact</h1>
+         
+         <div class="container-fluid mt-1">
+             <div class="row">
+                <div class="col-md-10 offset-md-1">
+                <!-- form tag -->
+                    <form  th:action="@{/user/process-data}" method="POST" 
+                    th:object="${contact}" enctype="multipart/form-data" class="mt-2">
+                    
+                    <!-- name field -->
+						<div class="input-group">
+							<div class="input-group-prepend">
+							   <div class="input-group-text"><i class="fa fa-plus"></i></div>
+							</div>
+							<input required type="text" class="form-control" id="firstName" name="name"  placeholder="Enter your name">
+						    
+						 </div>
+						 
+					<!-- second name field -->	 
+						 <div class="input-group mt-3">
+							<div class="input-group-prepend">
+							   <div class="input-group-text"><i class="fas fa-user-alt"></i></div>
+							</div>
+							<input  type="text" class="form-control" id="secondName" name="secondName"  placeholder="Enter your nick name">
+						 </div>
+						 
+				  <!-- email field -->	 
+						 <div class="input-group mt-3">
+							<div class="input-group-prepend">
+							   <div class="input-group-text"><i class="fa-regular fa-at"></i></div>
+							</div>
+							<input required type="email" class="form-control" id="email" name="email"    placeholder="Enter your email">
+							
+						 </div>
+						 
+						 
+				 <!-- phone field -->	 
+						 <div class="input-group mt-3">
+							<div class="input-group-prepend">
+							   <div class="input-group-text"><i class="fas fa-phone"></i></div>
+							</div>
+							<input required type="number" class="form-control" id="phone" name="phone"  placeholder="Enter your Mobile No">
+						    
+						 </div>
+						 
+						 
+				<!-- Work field -->	 
+						 <div class="input-group mt-3">
+							<div class="input-group-prepend">
+							   <div class="input-group-text"><i class="fas fa-briefcase"></i></div>
+							</div>
+							<input required type="text" class="form-control" id="work" name="work"   placeholder="Enter your work">
+						 </div>
+						 
+						 
+				<!-- description field -->	 
+						 <div class="form-group mt-3">
+							<textarea  class="form-control" id="mytextarea" name="description"   placeholder="Enter about contact description here.." rows="10"></textarea>
+						 </div>
+						 
+				<!-- profile image -->
+				        <div class="custom-file">
+				          <input type="file" name="profileImage"  >
+				        </div>
+				        
+				 <!-- button tag -->				 
+				        <div class="container text-center" >
+				             <button type="submit" class="btn btn-outline-primary">Submit</button>
+				        </div>				       
+				     </form>
+                </div>
+             </div>
+         </div> 
+     </div>
+  </div>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+     <script>
+      $(document).ready(()=>{
+        $(".item").removeClass("active");
+        $("#add").addClass("active");
+        
+      });
+      
+  </script>
+  </section>
+  
+</body>
+</html>

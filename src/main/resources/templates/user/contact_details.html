@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="/user/base2::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>contact_details</title>
+</head>
+<body>
+  <section>
+    <div class="card mr-5 ml-5 contact" th:if="${info}">
+       <div class="card-body">
+           <div class="container" >
+           <!-- image -->
+              <div class="text-center"><img src="" th:src="@{'/images/'+${info.image}}" alt="profile_pic"  class="info mb-2"/></div>
+              <!-- Contact name  --> 
+               <h2 class="text-center"><span th:text="${info.name}"  ></span> ( <span th:text="${info.secondName}" ></span> )</h2>
+               <div class="table-responsive">
+               <table class="table mt-3 table-hover">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" >#ID</th>
+                      <td scope="col"><span>SCM2023</span><span th:text="${info.cId}"></span></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">Email</th>
+                      <td th:text="${info.email}"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Phone</th>
+                      <td th:text="${info.phone}"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Work</th>
+                      <td th:text="${info.work}"></td>
+                    </tr>            
+                  </tbody>
+                </table>
+                </div>
+                <!-- description -->
+                <hr class="detail_line"/>
+                <h3 class="text-center mt-3 mb-3"> <b>Description</b></h3>
+                <hr class="detail_line"/>
+                <div th:utext="${info.description}" class="text-center mt-5"></div>
+                <!-- action buttons -->
+                <div class="container text-center mt-3">
+                <!-- delete button -->               
+                <a href="#" th:onclick="|deleteContact(${info.cId})|" type="button" class="btn btn-danger mb-3">Delete</a>  
+                <!-- th:href="@{'/user/delete/' + ${info.cId}}" --> 
+                <!-- update button -->
+                <form th:action="@{'/user/update-contact/'+${info.cId}}" method="POST">
+                
+                <button  class="btn btn-success">Update</button>
+                
+               </form>            
+               
+                </div>
+           </div>
+       </div>
+    </div>
+    <!-- to give alert message if user want to access contact details of another user -->
+    <h1 th:unless="${info}" th:classappend="alert-danger" role="alert" class="alert mr-3 ml-2">You don't have permission to this contact information !</h1>
+  
+  </section>
+</body>
+</html>

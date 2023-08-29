@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html  lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:replace="base2::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>signup</title>
+</head>
+<body>
+  <section>
+  
+  <div class="container mt-3 mb-3">
+     <div class="row">
+        <div class="col-md-6 offset-md-3">
+        <div class="my-card">
+          
+        <!-- printing error message on client side -->   
+          <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert">
+               <p class="text-center" th:text="${message.content}" ></p>
+          </div>
+         
+         <!-- form started -->
+         <div class="container text-center"><img style="width:40px"  src="" th:src="@{/images/edit.png}" alt="" /></div>
+         <h1 class="text-center" style="color:#008080;">Register Here</h1>
+          <form novalidate="novalidate" th:action="@{/do_register}" method="post" th:object="${user}">
+          
+               <!-- Name Field -->
+               <div class="form-group">
+               
+                <label for="name_field">Your Name</label>
+                <input type="text" class="form-control" id="name_field" aria-describedby="emailHelp" placeholder="Enter your name" name="name"  th:value="${user.name}" required>                          
+                     <ul>
+                       <li th:each="err : ${#fields.errors('name')}" th:text="${err}" class="error" />
+                     </ul>
+               </div>
+               
+               <!-- Email Field -->
+               <div class="form-group">
+               
+                <label for="email_field">Your Email</label>
+                <input type="email" class="form-control" id="email_field"  aria-describedby="emailHelp" name="email"  th:value="${user.email}"  placeholder="Enter email" required>                                
+                     <ul>
+                       <li th:each="err : ${#fields.errors('email')}" th:text="${err}" class="error" />
+                     </ul>
+               </div>
+               
+               <!-- Password Field -->
+               <div class="form-group">
+                  <label for="password_field">Password</label>
+                  <input type="password" class="form-control" id="password_field" name="password"   placeholder="Password" required>                              
+                      <ul>
+                       <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error" />
+                     </ul>
+                </div>
+                
+                <!-- About Field -->
+                <div class="form-group">
+                     <textarea placeholder="Enter something .." rows="5" class="form-control"   name="about" th:value="${user.about}"></textarea>
+                </div>
+               
+                <!-- Terms and conditions -->
+                <div class="form-check">
+                    <input  name="agreement"  type="checkbox" class="form-check-input" id="exampleCheck1"> 
+    
+                    <label class="form-check-label" for="exampleCheck1">Agreed with terms and conditions</label>
+                     <ul>
+                       <li th:each="err : ${#fields.errors('agreement')}" th:text="${err}" class="error">please check the box !</li>
+                     </ul>
+                  </div>                 
+               
+                <!-- Submit Button -->
+                <div class="container text-center mt-3">
+                    <button type="submit" class="btn bg-primary text-center text-white">Submit</button>
+                    <button type="submit" class="btn bg-warning text-center text-white">Reset</button>
+                </div>
+              
+          
+          </form>
+          
+        </div>                           
+        </div>
+     </div> 
+  </div>
+   <script>
+      $(document).ready(()=>{
+        $(".item").removeClass("active1");
+        $("#signup").addClass("active1");
+      });
+      
+  </script>
+       
+  </section>
+ 
+</body>
+</html>

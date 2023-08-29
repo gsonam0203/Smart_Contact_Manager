@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="/user/base2::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>dashboard</title>
+</head>
+<body>
+  <section>
+  <div class="container contact">
+  <div class="card">
+  	<div class="card-body">
+  		     <!-- printing error message on client side -->   
+          <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+               <p class="text-center" th:text="${session.message.content}" ></p>
+               <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+          </div>
+  		  <div class="text-center"><img src="/images/edit.png" alt="profile" width="60px"/></div>
+  		  <p class="font-italic text-secondary text-center mt-3" style="font-size: 30px;">Start adding your contacts on cloud ....</p>
+  		  <div class="text-center"><a type="button" class="btn btn-outline-info" th:href="@{/user/add-contact}">Add Contact</a></div>
+  		  <hr/>
+  		  
+  		  <!-- Payment card   -->
+  		  <div class="container d-flex justify-content-center">
+  		    <div class="card mb-3" style="width: 18rem;">
+                 <img class="card-img-top" src="/images/donate.png" alt="Card image cap">
+            <div class="card-body">
+                <!-- <h1 class="card-title text-center">Donate Us</h1> -->
+                <p class="card-text">Your one step makes happy to those who are every day waiting for their feed !</p>
+                <input type="text" id="amount" class="form-control my-2" placeholder="Enter Amount.." />
+                <div class="container text-center">
+  		             <a href="#"  onclick="paymentStart()" class="btn btn-info btn-block my-3">Pay</a>
+  		       </div>
+             </div>
+  		     </div>
+  		   </div>
+
+  	</div>
+  </div>
+  </div>
+
+  </section>
+</body>
+</html>

@@ -21,6 +21,9 @@ IDE: Spring Tool Suite (STS4)
 ![Screenshot 2024-05-12 191038](https://github.com/gsonam0203/Smart_Contact_Manager/assets/106368379/5aeaa94c-9c15-43a2-a38b-1de39f55dabc)
 
 # About Page
+![Screenshot 2024-05-12 191119](https://github.com/gsonam0203/Smart_Contact_Manager/assets/106368379/9a548035-4af3-4429-9dbc-cce833d0612f)
+![Screenshot 2024-05-12 191129](https://github.com/gsonam0203/Smart_Contact_Manager/assets/106368379/10ffe44e-7469-4c84-8b77-8deb37be135d)
+
 # Sign Up Page
 # Login page
 # User Dashboard

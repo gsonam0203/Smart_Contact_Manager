@@ -18,3 +18,4 @@ MySQL
 IDE: Spring Tool Suite (STS4)
 
 # Home Page 
+![Screenshot 2024-05-12 191038](https://github.com/gsonam0203/Smart_Contact_Manager/assets/106368379/5aeaa94c-9c15-43a2-a38b-1de39f55dabc)
